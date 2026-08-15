@@ -1,0 +1,418 @@
+:root {
+  /* palette taken from the lotus and deep maroon reference image */
+  --indigo: #4A0E1A;        /* deep maroon, replaces the old indigo base */
+  --indigo-light: #6B1420;  /* wine, lighter maroon for cards and panels */
+  --terracotta: #C7707A;    /* lotus petal rose, used for pilot highlight */
+  --turmeric: #D4A340;      /* lotus gold outline, accent color */
+  --teal: #2A5D52;          /* lotus leaf green */
+  --ivory: #F4EDE1;
+  --charcoal: #2A2A2A;
+
+  --font-display: 'Yatra One', cursive;
+  --font-body: 'Mukta', sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  background: var(--ivory);
+  color: var(--charcoal);
+}
+
+/* ============ HEADING BOX ============ */
+/* Exactly 6.5cm tall, as requested. Add your own heading content inside the
+   header element in index.html, this box just provides the frame. */
+.heading-box {
+  height: 6.5cm;
+  width: 100%;
+  background: var(--indigo);
+  overflow: hidden;
+  position: relative;
+}
+
+.heading-image {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* ============ SUB THEME CARDS ============ */
+.sub-themes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+  padding: 2rem 1.5rem;
+  background: var(--ivory);
+}
+
+.theme-card {
+  font-family: var(--font-body);
+  background: #FFFFFF;
+  border: 1px solid #E4D9C5;
+  border-radius: 14px;
+  padding: 1.1rem 1.4rem;
+  min-width: 160px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  text-align: left;
+}
+
+.theme-card:hover,
+.theme-card:focus-visible {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 24px rgba(27, 42, 74, 0.14);
+  border-color: var(--turmeric);
+  outline: none;
+}
+
+.theme-card-index {
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  color: var(--terracotta);
+  font-weight: 600;
+}
+
+.theme-card-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--indigo);
+}
+
+/* ============ MAP SECTION ============ */
+.map-section {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 1rem 1.5rem 3rem;
+  position: relative;
+  background:
+    radial-gradient(ellipse at 80% 20%, rgba(212, 163, 64, 0.06) 0%, transparent 50%),
+    var(--indigo);
+}
+
+.map-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0.35;
+  mix-blend-mode: overlay;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.35'/%3E%3C/svg%3E");
+}
+
+.map-section > * {
+  position: relative;
+  z-index: 1;
+}
+
+.map-wrapper {
+  position: relative;
+  flex: 1 1 640px;
+  max-width: 780px;
+  background: rgba(0, 0, 0, 0.15);
+  border: 1px solid var(--turmeric);
+  outline: 1px solid rgba(212, 163, 64, 0.4);
+  outline-offset: 5px;
+  border-radius: 4px;
+  padding: 2rem 1.75rem 1.5rem;
+  animation: frameGlow 5s ease-in-out infinite;
+}
+
+@keyframes frameGlow {
+  0%, 100% { box-shadow: 0 0 0 1px rgba(212, 163, 64, 0.15), 0 18px 50px rgba(0, 0, 0, 0.35); }
+  50% { box-shadow: 0 0 22px 2px rgba(212, 163, 64, 0.25), 0 18px 50px rgba(0, 0, 0, 0.35); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .map-wrapper { animation: none; }
+}
+
+/* small corner flourishes, echoing the ornamental frame in the heading art */
+.map-wrapper::before,
+.map-wrapper::after,
+.map-wrapper .corner-tl,
+.map-wrapper .corner-tr,
+.map-wrapper .corner-bl,
+.map-wrapper .corner-br {
+  content: "";
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  border: 2px solid var(--turmeric);
+  opacity: 0.85;
+}
+
+.map-wrapper::before {
+  top: -6px;
+  left: -6px;
+  border-right: none;
+  border-bottom: none;
+}
+
+.map-wrapper::after {
+  top: -6px;
+  right: -6px;
+  border-left: none;
+  border-bottom: none;
+}
+
+.map-wrapper .corner-bl {
+  bottom: -6px;
+  left: -6px;
+  border-right: none;
+  border-top: none;
+}
+
+.map-wrapper .corner-br {
+  bottom: -6px;
+  right: -6px;
+  border-left: none;
+  border-top: none;
+}
+
+/* small lotus emblem centered above the map, matching the heading artwork motif */
+.map-emblem {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 0.6rem;
+  opacity: 0.9;
+}
+
+#india-map {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ============ DISTRICT MAP VIEW ============ */
+/* Hidden by default. When a state is clicked, the India map wrapper is
+   hidden and this one is shown in its place, expanded, with that state's
+   district boundaries drawn. */
+.district-map-wrapper {
+  display: none;
+  flex-direction: column;
+}
+
+.district-map-wrapper.open {
+  display: flex;
+}
+
+#india-map-wrapper.hidden {
+  display: none;
+}
+
+.back-to-india {
+  align-self: flex-start;
+  background: transparent;
+  border: 1px solid rgba(227, 168, 87, 0.5);
+  color: var(--turmeric);
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  padding: 0.4rem 0.9rem;
+  border-radius: 20px;
+  cursor: pointer;
+  margin-bottom: 0.7rem;
+  transition: background 0.15s ease;
+}
+
+.back-to-india:hover,
+.back-to-india:focus-visible {
+  background: rgba(227, 168, 87, 0.15);
+  outline: none;
+}
+
+.district-map-title {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  color: var(--ivory);
+  margin: 0 0 0.8rem;
+  text-align: center;
+}
+
+#district-svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.district-path {
+  fill: var(--indigo-light);
+  stroke: rgba(244, 237, 225, 0.4);
+  stroke-width: 0.8;
+  cursor: pointer;
+  transition: transform 0.2s ease, fill 0.2s ease, opacity 0.2s ease;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.district-path:hover,
+.district-path:focus-visible {
+  transform: scale(1.035);
+  fill: var(--terracotta);
+  outline: none;
+}
+
+.district-path.highlighted {
+  fill: var(--terracotta);
+}
+
+.district-path.dimmed {
+  opacity: 0.25;
+}
+
+/* every state and union territory, base styling */
+.state-path {
+  fill: var(--indigo-light);
+  stroke: rgba(244, 237, 225, 0.35);
+  stroke-width: 0.6;
+  cursor: pointer;
+  transition: transform 0.2s ease, fill 0.2s ease, stroke 0.2s ease;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.state-path:hover,
+.state-path:focus-visible {
+  transform: scale(1.04);
+  stroke: var(--turmeric);
+  stroke-width: 1.2;
+  outline: none;
+}
+
+.state-path.pilot {
+  fill: var(--terracotta);
+}
+
+.state-path.selected {
+  stroke: var(--turmeric);
+  stroke-width: 1.6;
+}
+
+/* the floating state name label, shown on hover, catchy display font */
+.state-label {
+  position: absolute;
+  pointer-events: none;
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  color: var(--ivory);
+  background: var(--indigo);
+  border: 1px solid var(--turmeric);
+  padding: 0.25rem 0.7rem;
+  border-radius: 8px;
+  transform: translate(-50%, -130%);
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 0.15s ease;
+  z-index: 5;
+}
+
+.state-label.visible {
+  opacity: 1;
+}
+
+/* ============ STATE DETAIL PANEL ============ */
+.state-panel {
+  flex: 1 1 320px;
+  max-width: 380px;
+  background: var(--indigo-light);
+  border: 1px solid rgba(227, 168, 87, 0.35);
+  border-radius: 16px;
+  padding: 1.5rem;
+  min-height: 400px;
+  position: relative;
+  display: none;
+}
+
+.state-panel.open {
+  display: block;
+}
+
+.close-panel {
+  position: absolute;
+  top: 0.9rem;
+  right: 0.9rem;
+  background: transparent;
+  border: none;
+  color: var(--ivory);
+  font-size: 1.3rem;
+  cursor: pointer;
+  line-height: 1;
+}
+
+.panel-state-name {
+  font-family: var(--font-display);
+  font-size: 1.9rem;
+  color: var(--turmeric);
+  margin: 0 0 0.2rem;
+}
+
+.panel-district-count {
+  font-size: 0.85rem;
+  color: rgba(244, 237, 225, 0.7);
+  margin: 0 0 1.1rem;
+}
+
+.district-search {
+  width: 100%;
+  padding: 0.6rem 0.8rem;
+  border-radius: 8px;
+  border: 1px solid rgba(227, 168, 87, 0.4);
+  background: rgba(0, 0, 0, 0.2);
+  color: var(--ivory);
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  margin-bottom: 1rem;
+}
+
+.district-search::placeholder {
+  color: rgba(244, 237, 225, 0.5);
+}
+
+.district-search:focus {
+  outline: none;
+  border-color: var(--turmeric);
+}
+
+.district-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  max-height: 320px;
+  overflow-y: auto;
+}
+
+.district-list li {
+  padding: 0.55rem 0.7rem;
+  border-radius: 8px;
+  font-size: 0.92rem;
+  color: var(--ivory);
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.district-list li:hover,
+.district-list li:focus-visible {
+  background: rgba(227, 168, 87, 0.18);
+  outline: none;
+}
+
+.district-list li.no-results {
+  color: rgba(244, 237, 225, 0.55);
+  cursor: default;
+}
+
+.district-list li.no-results:hover {
+  background: transparent;
+}

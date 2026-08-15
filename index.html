@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Kathāvṛnta</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Yatra+One&family=Mukta:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- ============ HEADING BOX ============ -->
+  <header class="heading-box">
+    <img
+      src="heading-kathavrnta.png"
+      alt="Kathāvṛnta, the stem that carries the story"
+      class="heading-image"
+    />
+  </header>
+
+  <!-- ============ SUB THEME CARDS ============ -->
+  <section class="sub-themes" aria-label="Feature navigation">
+    <button class="theme-card" data-feature="feature-1">
+      <span class="theme-card-index">01</span>
+      <span class="theme-card-title">Feature One</span>
+    </button>
+    <button class="theme-card" data-feature="feature-2">
+      <span class="theme-card-index">02</span>
+      <span class="theme-card-title">Feature Two</span>
+    </button>
+    <button class="theme-card" data-feature="feature-3">
+      <span class="theme-card-index">03</span>
+      <span class="theme-card-title">Feature Three</span>
+    </button>
+    <button class="theme-card" data-feature="feature-4">
+      <span class="theme-card-index">04</span>
+      <span class="theme-card-title">Feature Four</span>
+    </button>
+    <button class="theme-card" data-feature="feature-5">
+      <span class="theme-card-index">05</span>
+      <span class="theme-card-title">Feature Five</span>
+    </button>
+  </section>
+
+  <!-- ============ LIVING MAP ============ -->
+  <section class="map-section">
+
+    <div class="map-wrapper" id="india-map-wrapper">
+      <span class="corner-bl" aria-hidden="true"></span>
+      <span class="corner-br" aria-hidden="true"></span>
+      <div class="map-emblem" aria-hidden="true">
+        <svg width="34" height="34" viewBox="0 0 34 34" fill="none">
+          <path d="M17 4 C19 9 24 10 24 15 C24 19 20.5 22 17 22 C13.5 22 10 19 10 15 C10 10 15 9 17 4 Z" stroke="#D4A340" stroke-width="1.2"/>
+          <path d="M17 10 L17 26" stroke="#D4A340" stroke-width="1.2"/>
+          <path d="M9 19 C11 21 14 22 17 22 C20 22 23 21 25 19" stroke="#D4A340" stroke-width="1"/>
+        </svg>
+      </div>
+      <svg id="india-map" viewBox="0 0 600 650" role="img" aria-label="Interactive map of India by state and union territory"></svg>
+      <div id="state-label" class="state-label" aria-hidden="true"></div>
+    </div>
+
+    <div class="map-wrapper district-map-wrapper" id="district-map-wrapper">
+      <span class="corner-bl" aria-hidden="true"></span>
+      <span class="corner-br" aria-hidden="true"></span>
+      <button id="back-to-india" class="back-to-india">&#8592; Back to India map</button>
+      <h3 id="district-map-title" class="district-map-title"></h3>
+      <svg id="district-svg" viewBox="0 0 560 560" role="img" aria-label="District boundaries for the selected state"></svg>
+      <div id="district-label" class="state-label" aria-hidden="true"></div>
+    </div>
+
+    <aside id="state-panel" class="state-panel">
+      <button id="close-panel" class="close-panel" aria-label="Close panel">&#215;</button>
+      <h2 id="panel-state-name" class="panel-state-name"></h2>
+      <p id="panel-district-count" class="panel-district-count"></p>
+      <input
+        id="district-search"
+        class="district-search"
+        type="text"
+        placeholder="Search a district"
+        autocomplete="off"
+      />
+      <ul id="district-list" class="district-list"></ul>
+    </aside>
+  </section>
+
+  <script src="mapData.js"></script>
+  <script src="stateDistrictData.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
