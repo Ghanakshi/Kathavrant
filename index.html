@@ -24,7 +24,7 @@
   <section class="sub-themes" aria-label="Feature navigation">
     <button class="theme-card" data-feature="feature-1">
       <span class="theme-card-index">01</span>
-      <span class="theme-card-title">Feature One</span>
+      <span class="theme-card-title">Find a Song</span>
     </button>
     <button class="theme-card" data-feature="feature-2">
       <span class="theme-card-index">02</span>
@@ -64,16 +64,23 @@
     <div class="map-wrapper district-map-wrapper" id="district-map-wrapper">
       <span class="corner-bl" aria-hidden="true"></span>
       <span class="corner-br" aria-hidden="true"></span>
-      <button id="back-to-india" class="back-to-india">&#8592; Back to India map</button>
+      <button id="back-to-india" class="back-to-india">Back to India map</button>
       <h3 id="district-map-title" class="district-map-title"></h3>
       <svg id="district-svg" viewBox="0 0 560 560" role="img" aria-label="District boundaries for the selected state"></svg>
       <div id="district-label" class="state-label" aria-hidden="true"></div>
     </div>
 
     <aside id="state-panel" class="state-panel">
-      <button id="close-panel" class="close-panel" aria-label="Close panel">&#215;</button>
+      <button id="close-panel" class="close-panel" aria-label="Close panel">Close</button>
       <h2 id="panel-state-name" class="panel-state-name"></h2>
       <p id="panel-district-count" class="panel-district-count"></p>
+
+      <div class="state-info-image-wrap" id="state-info-image-wrap">
+        <span class="state-info-placeholder" id="state-info-placeholder" aria-hidden="true"></span>
+        <img id="panel-state-image" class="state-info-image" alt="" />
+      </div>
+      <p id="panel-state-blurb" class="state-info-blurb"></p>
+
       <input
         id="district-search"
         class="district-search"
@@ -85,8 +92,94 @@
     </aside>
   </section>
 
+  <!-- ============ FIND A SONG (Feature One) ============ -->
+  <div id="song-finder-modal" class="song-finder-modal" aria-hidden="true">
+    <div id="song-finder-backdrop" class="song-finder-backdrop"></div>
+
+    <div class="song-finder-panel" role="dialog" aria-modal="true" aria-labelledby="song-finder-title">
+      <button id="song-finder-close" class="song-finder-close" aria-label="Close find a song">Close</button>
+
+      <!-- ---- LIST / SEARCH VIEW ---- -->
+      <div id="song-list-view">
+        <h2 id="song-finder-title" class="song-finder-title">Find a Song</h2>
+        <p class="song-finder-subtitle">Type a song name, a word you remember, or the mood you're after &mdash; or just tap the mic and sing or say it.</p>
+
+        <div class="song-search-bar">
+          <span class="song-search-icon" aria-hidden="true"></span>
+          <input
+            id="song-search-input"
+            class="song-search-input"
+            type="text"
+            placeholder="Try 'monsoon', 'wedding dhol', or a song name..."
+            autocomplete="off"
+          />
+          <select id="song-mic-lang" class="song-mic-lang" aria-label="Voice search language">
+            <option value="en-IN">EN</option>
+            <option value="hi-IN">HI</option>
+          </select>
+          <button id="song-mic-btn" class="song-mic-btn" type="button" aria-label="Search by singing or speaking">Mic</button>
+        </div>
+        <div id="song-mic-status" class="song-mic-status" aria-live="polite"></div>
+
+        <div id="song-chip-row" class="song-chip-row" aria-label="Quick mood and occasion filters"></div>
+
+        <p class="song-finder-note">Matches by title, artist, mood, region, genre, era and instruments &mdash; not full lyric-line lookup yet (that needs a licensed lyrics database behind it).</p>
+
+        <div id="song-results" class="song-results"></div>
+      </div>
+
+      <!-- ---- DETAIL VIEW ---- -->
+      <div id="song-detail-view" hidden>
+        <button id="song-back-btn" class="song-back-btn" type="button">Back to results</button>
+
+        <h2 id="song-detail-title" class="song-detail-title"></h2>
+        <p id="song-detail-artist" class="song-detail-artist"></p>
+
+        <p id="song-detail-description" class="song-detail-description"></p>
+
+        <div class="song-detail-grid">
+          <div class="song-detail-field">
+            <span class="song-detail-label">Language</span>
+            <span id="song-detail-language" class="song-detail-value"></span>
+          </div>
+          <div class="song-detail-field">
+            <span class="song-detail-label">Region</span>
+            <span id="song-detail-region" class="song-detail-value"></span>
+          </div>
+          <div class="song-detail-field">
+            <span class="song-detail-label">Genre</span>
+            <span id="song-detail-genre" class="song-detail-value"></span>
+          </div>
+          <div class="song-detail-field">
+            <span class="song-detail-label">Occasion</span>
+            <span id="song-detail-occasion" class="song-detail-value"></span>
+          </div>
+          <div class="song-detail-field">
+            <span class="song-detail-label">Instruments</span>
+            <span id="song-detail-instruments" class="song-detail-value"></span>
+          </div>
+          <div class="song-detail-field">
+            <span class="song-detail-label">Era</span>
+            <span id="song-detail-era" class="song-detail-value"></span>
+          </div>
+          <div class="song-detail-field">
+            <span class="song-detail-label">Period</span>
+            <span id="song-detail-period" class="song-detail-value"></span>
+          </div>
+        </div>
+
+        <a id="song-detail-youtube" class="song-youtube-btn" href="#" target="_blank" rel="noopener noreferrer">
+          Find it on YouTube
+        </a>
+      </div>
+    </div>
+  </div>
+
   <script src="mapData.js"></script>
   <script src="stateDistrictData.js"></script>
+  <script src="stateInfo.js"></script>
+  <script src="songData.js"></script>
+  <script src="songFinder.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
