@@ -39,6 +39,36 @@ const RAJASTHAN_FOLK_SONGS = [
     date: "",
   },
 ];
+//WEST BENGAL FOLK SONGS
+const WEST_BENGAL_FOLK_SONGS = [
+  {
+    title: "West Bengal Folk Song",
+    youtube: "https://youtu.be/FqrXL5qhIes",
+    source: "",
+    date: "",
+  },
+
+  {
+    title: "Bengali Bhatiyali Folk Song",
+    youtube: "https://youtu.be/GGpybbYBOfI",
+    source: "Bhatiyali Folk Tradition",
+    date: "",
+  },
+
+  {
+    title: "Ebar Tor Mora Gange",
+    youtube: "https://youtu.be/ww9hB2UX0cc",
+    source: "",
+    date: "",
+  },
+
+  {
+    title: "Ekla Cholo Re",
+    youtube: "https://youtu.be/NUGGTsrUnVM",
+    source: "",
+    date: "",
+  },
+];
 
 /* =========================================================
    DISTRICT DATA
@@ -919,15 +949,349 @@ A Rajasthan Government publication notes that the story remains part of the cult
 
     folkSongs: RAJASTHAN_FOLK_SONGS,
   },
+
+  /* =====================================================
+     WEST BENGAL
+     ===================================================== */
+
   kolkata: {
     state: "west bengal",
 
-    description: "",
+    description:
+      "The cultural and intellectual heart of West Bengal, Kolkata is known for its literature, theatre, music, art and rich colonial-era heritage.",
+
+    stories: [
+      {
+        title: "Saat Bhai Champa ",
+        content: `
+        Saat Bhai Champa (Seven Champa Brothers) is a popular folk tale of the Bengal region, preserved in Bengali folklore and literature. The story is associated with Thakurmar Jhuli, the famous collection of Bengali folk and fairy tales compiled by Dakshinaranjan Mitra Majumder and first published in 1907. The collection's introduction was written by Rabindranath Tagore. The tale is also connected with the international folktale type ATU 707, “The Three Golden Children.” 
+        The story begins with a king who has three queens but no children. The king is deeply concerned because he has no heir to continue his kingdom. Eventually, a priest gives him magical mangoes and tells him that eating them will allow his queens to have children. The mangoes are distributed among the queens. The youngest queen, who is sincere and hopeful, receives the blessing and eventually gives birth to seven sons and a daughter named Parul. However, the elder queens become jealous of the younger queen and her children. When the king is away, they conspire against her and secretly take the newborn children. The children are buried in the palace garden, while the elder queens deceive the king about what has happened. 
+         The children, however, do not die. Through a magical transformation, the seven brothers become seven Champa flowers, while their sister Parul becomes associated with the Parul flower. The flowers grow in the palace garden, creating a mysterious connection between the lost children and nature. The king and others notice the beautiful flowers, but they cannot understand their true identity. The jealous queens attempt to prevent the flowers from revealing the truth. Meanwhile, Parul survives and grows up away from the palace under the protection of a maid. As she grows older, she gradually discovers the truth about her family and the fate of her brothers. Eventually, the truth is revealed. The children's mother approaches the magical flowers, and the spell is broken. The seven Champa flowers transform back into the seven princes, while Parul's identity is also revealed. The king finally learns that the children were victims of the jealousy and deception of the elder queens. The innocent mother and her children are restored to their rightful place, while the wrongdoing of the jealous queens is exposed. Thus, the story ends with the restoration of justice, family, and truth. 
+         The story is significant within Bengali folk literature because it combines magical transformation, family relationships, jealousy, maternal love, betrayal, and the triumph of truth. Different versions of the tale exist, including versions identified with West Bengali folklore. The Wikipedia article also records a version titled Seven Champa Brothers and Sister Parul and mentions artistic representations of the story, including Gaganendranath Tagore's Sat-Bhai Champa. `,
+      },
+      {
+        title: "Sheet And Basanta",
+        content: `There was once a king who had two wives. The elder queen, known as Suo, was his favourite, while the younger queen, Duo, was despised by her. Duo had two sons, Sheet and Basanta, who were princes and heirs to the throne. Although they were strong and goodnatured, they lived unhappily because of the secret cruelty of their stepmother. One day, the two queens went to bathe in the river near the palace. Suo pretended to be kind and offered to wash Duo's hair and put oil on it. Duo trusted her, but Suo used magic and transformed her into a beautiful parrot. The parrot flew away, while Suo returned to the palace and falsely told the king that Duo had drowned. The king believed her and mourned the loss of his wife. 
+        The enchanted parrot eventually reached another kingdom. The princess of that kingdom saw the bird and asked her father to keep it. The king agreed, and the parrot was placed in a golden cage in the palace. Meanwhile, Suo became even more jealous of Sheet and Basanta. She had three sons of her own, but they were weak and thin, while Sheet and Basanta were strong and healthy. She therefore treated her stepsons cruelly, giving them poor food and constantly trying to harm them. 
+        At last, Suo falsely accused the two princes of insulting her and demanded that the king punish them by death. The king, believing her accusation, ordered an executioner to kill the boys and bring their blood to the queen. The executioner, however, remembered caring for the princes when they were children and could not kill them. He secretly released them, dressed them in tree bark and told them to flee. To deceive the queen, he killed some dogs and jackals and took their blood back to the palace. 
+        Sheet and Basanta then wandered through the forest. After travelling for some time, Basanta became extremely thirsty. Sheet went in search of water and eventually found a tank. Before he could bring water to his brother, a magnificent white royal elephant appeared. Seeing signs of royalty on Sheet, the elephant lifted him with its trunk, placed him on the throne on its back and carried him to its own kingdom. The people welcomed Sheet as their new king. Basanta waited for his brother, but when Sheet did not return, he searched for him until he was exhausted. He finally fell asleep, and a hermit discovered him. Recognizing that Basanta was a prince, the hermit took him to his retreat, where the young prince lived peacefully, eating fruits, bathing in fresh water and learning from the wise hermit. 
+        Meanwhile, the cruelty of Sheet and Basanta's father and stepmother became known throughout their kingdom. The people turned against the king and invited another ruler to take his throne. The former king lost everything and fled to the forest. Suo was left to wander from place to place with her three sons. One day, near the sea, her sons were swept away by the waves and drowned. Overcome with grief, Suo ended her own life. The princess Rupamoti, who had the enchanted parrot in her palace, eventually came of age. Her father arranged a ceremony in which many princes gathered to seek her hand in marriage. Rupamoti declared that she would marry only the man who could bring her the magical Gajamutty, pearls believed to be found in the heads of elephants. Many princes attempted the task but failed. 
+        When Sheet heard of Rupamoti's challenge, he became angry and invaded her father's kingdom, taking the princess captive. Basanta, still living with the hermit, knew nothing of these events. One evening, however, he overheard two parrots speaking about Rupamoti and the Gajamutty. Determined to obtain the pearls, he began a long and difficult journey. The parrots told him to take magical royal garments from the top of a Shimul tree and the hermit's sacred trident. Wearing them, Basanta travelled for twelve years and thirteen days, overcoming many obstacles until he reached a snow-covered mountain beside a sea of cream. There he saw a milk-white elephant with the precious pearls shining from its head. Basanta seized the Gajamutty. The elephant then transformed into a golden lotus and told him to take both the lotus and the pearls to Rupamoti. 
+        On his return journey, Basanta heard voices beneath the sand and discovered three golden fish. He rescued them and continued towards Rupamoti's kingdom. There he learned that Rupamoti was being held captive by King Sheet. Basanta sent the three golden fish as gifts to Sheet and asked that Rupamoti be released. At that time, Sheet had begun remembering his lost brother and was overcome with sorrow for having abandoned him. When the golden fish were about to be prepared as food, they suddenly cried out that they were the king's brothers. Sheet immediately summoned the person who had brought them. When the brothers saw each other, they recognized one another and embraced with tears of joy. The three golden fish then transformed into princes—the three sons of Suo. 
+        Meanwhile, Rupamoti's golden parrot told her that the son of an unhappy mother had crossed seven seas and brought her the Gajamutty. Rupamoti was delighted and ordered the parrot to be bathed in milk and rosewater. As the magical substance was washed away, the parrot transformed back into a beautiful woman. She was Duo, the mother of Sheet and Basanta. The family was finally reunited. Rupamoti offered her hand in marriage to Basanta, and he accepted. Their wedding was celebrated with great joy. The brothers then searched for their father and brought him back to them. With Sheet's help, the old king regained his kingdom, which was united with his son's kingdom. Thus, after years of suffering, separation and hardship, Sheet, Basanta, their mother, their father and the rest of the royal family were reunited and lived together in peace and happiness. `,
+      },
+    ],
+
+    historicalNarratives: [
+      {
+        title: "The Birth of Colonial Calcutta",
+        image: "assets/narratives/calcutta.jpg",
+        content: `Kolkata's early history is closely connected with three villages—Sutanuti, Govindapur, and Kalikata—located along the eastern bank of the Hooghly River. In the late 17th century, the English East India Company established a trading settlement in the area. Its location along the river made it an important centre for trade, commerce, and communication.
+        As the Company's influence grew, Fort William was constructed to protect its settlement, and Calcutta gradually developed into a major colonial city. By the 18th century, it had become the centre of British administration in Bengal. In 1772, Calcutta became the capital of British India, a position it retained until the capital was moved to Delhi in 1911.
+        The growth of colonial Calcutta transformed the city's landscape and society. European-style buildings, markets, institutions, roads, and administrative centres developed alongside older Bengali neighbourhoods. This mixture of colonial and local influences eventually helped make Kolkata one of India's most important centres of trade, education, literature, art, and political activity.`,
+      },
+      {
+        title: "The Black Hole of Calcutta",
+        image: "assets/narratives/blackhole.webp",
+        content: `The Black Hole of Calcutta refers to an incident that allegedly took place in June 1756, after the forces of Nawab Siraj-ud-Daulah captured Fort William in Calcutta. According to the account later popularized by British officer John Zephaniah Holwell, a group of British prisoners were confined overnight in a small room with very little ventilation, resulting in many deaths.
+        The traditional British account claimed that 123 out of 146 prisoners died, but historians have questioned both the accuracy of these numbers and some details of Holwell's narrative. The event therefore remains historically controversial, and modern accounts generally distinguish between the documented capture of Fort William and the disputed details surrounding the alleged imprisonment.
+        The story was later used in British narratives to portray the Nawab's rule as cruel and to justify British military and political expansion in Bengal. It became part of the larger chain of events that led to the Battle of Plassey in 1757, which marked a major turning point in the rise of British power in Bengal.`,
+      },
+      {
+        title: "The Story of Jorasanko Thakur Bari",
+        image: "assets/narratives/thakur.jpeg",
+        content: `In the heart of old Kolkata stands Jorasanko Thakur Bari, the ancestral home of the Tagore family. Built in the 18th century, the house became an important centre of Bengal's intellectual and cultural life. The Tagore family played a major role in the Bengal Renaissance, contributing to literature, art, education, music, and social reform.
+        The house is especially remembered as the birthplace of Rabindranath Tagore, who was born here in 1861. It was within these walls that he grew up surrounded by literature, music, theatre, and discussions about society and culture. The atmosphere of Jorasanko deeply influenced his artistic development and his later work as a poet, writer, composer, and thinker.
+        Today, Jorasanko Thakur Bari preserves the memory of the Tagore family and Kolkata's cultural transformation. The ancestral home has been developed as a museum, allowing visitors to explore the family's history, Tagore's life, and the cultural world of 19th-century Bengal. It stands not merely as an old building, but as a symbol of Bengal's literary and artistic heritage.`,
+      },
+    ],
+
+    folkSongs: WEST_BENGAL_FOLK_SONGS,
+  },
+
+  murshidabad: {
+    state: "west bengal",
+
+    description:
+      "A historic district once central to the Bengal Nawabs, Murshidabad is renowned for its palaces, architecture, crafts and rich cultural traditions.",
 
     stories: [],
 
     historicalNarratives: [],
 
-    folkSongs: [],
+    folkSongs: WEST_BENGAL_FOLK_SONGS,
+  },
+
+  birbhum: {
+    state: "west bengal",
+
+    description:
+      "Known for its Baul traditions, folk culture and artistic heritage, Birbhum is closely associated with Santiniketan and rural Bengal.",
+
+    stories: [],
+
+    historicalNarratives: [],
+
+    folkSongs: WEST_BENGAL_FOLK_SONGS,
+  },
+
+  bankura: {
+    state: "west bengal",
+
+    description:
+      "Bankura is celebrated for its terracotta temples, Dokra craft, folk traditions and distinctive cultural heritage of western Bengal.",
+
+    stories: [],
+
+    historicalNarratives: [],
+
+    folkSongs: WEST_BENGAL_FOLK_SONGS,
+  },
+
+  purulia: {
+    state: "west bengal",
+
+    description:
+      "Purulia is known for its vibrant Chhau dance, tribal traditions, folk music and distinctive cultural landscape.",
+
+    stories: [],
+
+    historicalNarratives: [],
+
+    folkSongs: WEST_BENGAL_FOLK_SONGS,
+  },
+
+  bardhaman: {
+    state: "west bengal",
+
+    description:
+      "Bardhaman, also known as Burdwan, has a rich agricultural, historical and cultural heritage shaped by centuries of Bengal's history.",
+
+    stories: [],
+
+    historicalNarratives: [],
+
+    folkSongs: WEST_BENGAL_FOLK_SONGS,
+  },
+
+  "paschim bardhaman": {
+    state: "west bengal",
+
+    description:
+      "Paschim Bardhaman is an important industrial region of West Bengal, known for its coalfields, mining heritage and diverse communities.",
+
+    stories: [],
+
+    historicalNarratives: [],
+
+    folkSongs: WEST_BENGAL_FOLK_SONGS,
+  },
+
+  "north 24 parganas": {
+    state: "west bengal",
+
+    description:
+      "North 24 Parganas is a diverse district surrounding Kolkata, with a blend of urban heritage, rural traditions and riverine culture.",
+
+    stories: [],
+
+    historicalNarratives: [],
+
+    folkSongs: WEST_BENGAL_FOLK_SONGS,
+  },
+
+  "south 24 parganas": {
+    state: "west bengal",
+
+    description:
+      "South 24 Parganas stretches from the urban fringe of Kolkata to the Sundarbans, combining coastal, riverine and folk traditions.",
+
+    stories: [],
+
+    historicalNarratives: [],
+
+    folkSongs: WEST_BENGAL_FOLK_SONGS,
+  },
+
+  howrah: {
+    state: "west bengal",
+
+    description:
+      "Located across the Hooghly River from Kolkata, Howrah combines industrial heritage, river culture and historic landmarks.",
+
+    stories: [],
+
+    historicalNarratives: [],
+
+    folkSongs: WEST_BENGAL_FOLK_SONGS,
+  },
+
+  hooghly: {
+    state: "west bengal",
+
+    description:
+      "Hooghly has a layered cultural history shaped by Bengali traditions and European settlements along the Hooghly River.",
+
+    stories: [],
+
+    historicalNarratives: [],
+
+    folkSongs: WEST_BENGAL_FOLK_SONGS,
+  },
+
+  nadia: {
+    state: "west bengal",
+
+    description:
+      "Nadia is a major centre of Bengali religious, literary and cultural traditions, particularly associated with the legacy of Chaitanya Mahaprabhu.",
+
+    stories: [],
+
+    historicalNarratives: [],
+
+    folkSongs: WEST_BENGAL_FOLK_SONGS,
+  },
+
+  darjeeling: {
+    state: "west bengal",
+
+    description:
+      "Darjeeling is known for its Himalayan landscapes, tea gardens and diverse Nepali, Tibetan and Bengali cultural traditions.",
+
+    stories: [],
+
+    historicalNarratives: [],
+
+    folkSongs: WEST_BENGAL_FOLK_SONGS,
+  },
+
+  jalpaiguri: {
+    state: "west bengal",
+
+    description:
+      "Jalpaiguri is a green Himalayan foothill district known for tea gardens, forests, rivers and diverse indigenous cultures.",
+
+    stories: [],
+
+    historicalNarratives: [],
+
+    folkSongs: WEST_BENGAL_FOLK_SONGS,
+  },
+
+  kalimpong: {
+    state: "west bengal",
+
+    description:
+      "Kalimpong is a Himalayan district known for its mountain culture, monasteries, traditional communities and scenic landscapes.",
+
+    stories: [],
+
+    historicalNarratives: [],
+
+    folkSongs: WEST_BENGAL_FOLK_SONGS,
+  },
+
+  alipurduar: {
+    state: "west bengal",
+
+    description:
+      "Alipurduar is surrounded by forests, rivers and the eastern Himalayan foothills, with rich tribal and indigenous cultural traditions.",
+
+    stories: [],
+
+    historicalNarratives: [],
+
+    folkSongs: WEST_BENGAL_FOLK_SONGS,
+  },
+
+  "cooch behar": {
+    state: "west bengal",
+
+    description:
+      "Cooch Behar has a distinctive royal heritage, with the Cooch Behar palace and traditions influenced by the region's princely history.",
+
+    stories: [],
+
+    historicalNarratives: [],
+
+    folkSongs: WEST_BENGAL_FOLK_SONGS,
+  },
+
+  malda: {
+    state: "west bengal",
+
+    description:
+      "Malda is an important historical region of Bengal, known for its medieval heritage, mangoes, silk traditions and archaeological sites.",
+
+    stories: [],
+
+    historicalNarratives: [],
+
+    folkSongs: WEST_BENGAL_FOLK_SONGS,
+  },
+
+  "uttar dinajpur": {
+    state: "west bengal",
+
+    description:
+      "Uttar Dinajpur is a culturally diverse district of northern Bengal with strong rural traditions and folk cultural practices.",
+
+    stories: [],
+
+    historicalNarratives: [],
+
+    folkSongs: WEST_BENGAL_FOLK_SONGS,
+  },
+
+  "dakshin dinajpur": {
+    state: "west bengal",
+
+    description:
+      "Dakshin Dinajpur is known for its rural landscape, agricultural communities and traditional folk culture of northern Bengal.",
+
+    stories: [],
+
+    historicalNarratives: [],
+
+    folkSongs: WEST_BENGAL_FOLK_SONGS,
+  },
+
+  jhargram: {
+    state: "west bengal",
+
+    description:
+      "Jhargram is rich in tribal heritage, forests, folk traditions and indigenous cultural practices of southwestern Bengal.",
+
+    stories: [],
+
+    historicalNarratives: [],
+
+    folkSongs: WEST_BENGAL_FOLK_SONGS,
+  },
+
+  "purba medinipur": {
+    state: "west bengal",
+
+    description:
+      "Purba Medinipur combines coastal landscapes with a rich history of maritime traditions, temples, festivals and folk culture.",
+
+    stories: [],
+
+    historicalNarratives: [],
+
+    folkSongs: WEST_BENGAL_FOLK_SONGS,
+  },
+
+  "paschim medinipur": {
+    state: "west bengal",
+
+    description:
+      "Paschim Medinipur is known for its rural and tribal communities, folk traditions, crafts and cultural heritage of southwestern Bengal.",
+
+    stories: [],
+
+    historicalNarratives: [],
+
+    folkSongs: WEST_BENGAL_FOLK_SONGS,
   },
 };
