@@ -22,25 +22,29 @@
 
   <!-- ============ SUB THEME CARDS ============ -->
   <section class="sub-themes" aria-label="Feature navigation">
-    <button class="theme-card" data-feature="feature-1">
+    <button class="theme-card" data-feature="feature-1" onclick="window.openSongFinder &amp;&amp; window.openSongFinder()">
       <span class="theme-card-index">01</span>
       <span class="theme-card-title">Find a Song</span>
     </button>
-    <button class="theme-card" data-feature="feature-2">
+    <button class="theme-card" data-feature="feature-2" onclick="window.openLokVaani &amp;&amp; window.openLokVaani()">
       <span class="theme-card-index">02</span>
-      <span class="theme-card-title">Feature Two</span>
+      <span class="theme-card-title">Lok Vaani</span>
     </button>
-    <button class="theme-card" data-feature="feature-3">
+    <button class="theme-card" data-feature="feature-3" onclick="window.openContributor &amp;&amp; window.openContributor()">
       <span class="theme-card-index">03</span>
-      <span class="theme-card-title">Feature Three</span>
+      <span class="theme-card-title">Become a Contributor</span>
     </button>
-    <button class="theme-card" data-feature="feature-4">
+    <button class="theme-card" data-feature="feature-4" onclick="window.openFolkLearn &amp;&amp; window.openFolkLearn()">
       <span class="theme-card-index">04</span>
-      <span class="theme-card-title">Feature Four</span>
+      <span class="theme-card-title">Learn a Folk Song</span>
     </button>
-    <button class="theme-card" data-feature="feature-5">
+    <button class="theme-card" data-feature="feature-5" onclick="window.openHeritageExplorer &amp;&amp; window.openHeritageExplorer()">
       <span class="theme-card-index">05</span>
-      <span class="theme-card-title">Feature Five</span>
+      <span class="theme-card-title">Explore Heritage</span>
+    </button>
+    <button class="theme-card" data-feature="feature-6" onclick="window.openArtDetector &amp;&amp; window.openArtDetector()">
+      <span class="theme-card-index">06</span>
+      <span class="theme-card-title">Detect an Art Form</span>
     </button>
   </section>
 
@@ -48,15 +52,6 @@
   <section class="map-section">
 
     <div class="map-wrapper" id="india-map-wrapper">
-      <span class="corner-bl" aria-hidden="true"></span>
-      <span class="corner-br" aria-hidden="true"></span>
-      <div class="map-emblem" aria-hidden="true">
-        <svg width="34" height="34" viewBox="0 0 34 34" fill="none">
-          <path d="M17 4 C19 9 24 10 24 15 C24 19 20.5 22 17 22 C13.5 22 10 19 10 15 C10 10 15 9 17 4 Z" stroke="#D4A340" stroke-width="1.2"/>
-          <path d="M17 10 L17 26" stroke="#D4A340" stroke-width="1.2"/>
-          <path d="M9 19 C11 21 14 22 17 22 C20 22 23 21 25 19" stroke="#D4A340" stroke-width="1"/>
-        </svg>
-      </div>
       <svg id="india-map" viewBox="0 0 600 650" role="img" aria-label="Interactive map of India by state and union territory"></svg>
       <div id="state-label" class="state-label" aria-hidden="true"></div>
     </div>
@@ -64,7 +59,10 @@
     <div class="map-wrapper district-map-wrapper" id="district-map-wrapper">
       <span class="corner-bl" aria-hidden="true"></span>
       <span class="corner-br" aria-hidden="true"></span>
-      <button id="back-to-india" class="back-to-india">Back to India map</button>
+      <button id="back-to-india" class="back-to-india">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+        <span>Back to India map</span>
+      </button>
       <h3 id="district-map-title" class="district-map-title"></h3>
       <svg id="district-svg" viewBox="0 0 560 560" role="img" aria-label="District boundaries for the selected state"></svg>
       <div id="district-label" class="state-label" aria-hidden="true"></div>
@@ -97,54 +95,150 @@
     <div id="song-finder-backdrop" class="song-finder-backdrop"></div>
 
     <div class="song-finder-panel" role="dialog" aria-modal="true" aria-labelledby="song-finder-title">
-      <button id="song-finder-close" class="song-finder-close" aria-label="Close find a song">Close</button>
+      <button id="song-finder-close" class="song-finder-close" aria-label="Close find a song">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+      </button>
 
       <!-- ---- LIST / SEARCH VIEW ---- -->
       <div id="song-list-view">
-        <h2 id="song-finder-title" class="song-finder-title">Find a Song</h2>
-        <p class="song-finder-subtitle">Type a song name, a word you remember, or the mood you're after &mdash; or just tap the mic and sing or say it.</p>
-
-        <div class="song-search-bar">
-          <span class="song-search-icon" aria-hidden="true"></span>
-          <input
-            id="song-search-input"
-            class="song-search-input"
-            type="text"
-            placeholder="Try 'monsoon', 'wedding dhol', or a song name..."
-            autocomplete="off"
-          />
-          <select id="song-mic-lang" class="song-mic-lang" aria-label="Voice search language">
-            <option value="en-IN">EN</option>
-            <option value="hi-IN">HI</option>
-          </select>
-          <button id="song-mic-btn" class="song-mic-btn" type="button" aria-label="Search by singing or speaking">Mic</button>
+        <div class="song-finder-header">
+          <h2 id="song-finder-title" class="song-finder-title">Find a Song</h2>
+          <p class="song-finder-subtitle">Sing or hum a tune into your microphone, type lyrics or title, or explore traditional folk heritage across Indian states.</p>
         </div>
-        <div id="song-mic-status" class="song-mic-status" aria-live="polite"></div>
 
-        <div id="song-chip-row" class="song-chip-row" aria-label="Quick mood and occasion filters"></div>
+        <!-- Traditional Indian Heritage Showcase Banner with Uploaded Artwork -->
+        <div class="heritage-artwork-showcase">
+          <div class="heritage-art-card" data-filter="classical">
+            <div class="heritage-art-img-wrap">
+              <img src="images/tradition_saraswati.jpg" alt="Goddess Saraswati with Veena" class="heritage-art-img" />
+              <div class="heritage-art-overlay"></div>
+            </div>
+            <div class="heritage-art-content">
+              <span class="heritage-art-tag">Classical &amp; Sacred</span>
+              <h3 class="heritage-art-title">Veena &amp; Alaap</h3>
+              <p class="heritage-art-sub">Ancient strings, ragas and sacred chant lines</p>
+            </div>
+          </div>
 
-        <p class="song-finder-note">Matches by title, artist, mood, region, genre, era and instruments &mdash; not full lyric-line lookup yet (that needs a licensed lyrics database behind it).</p>
+          <div class="heritage-art-card" data-filter="dance">
+            <div class="heritage-art-img-wrap">
+              <img src="images/tradition_dance.jpg" alt="Rajasthani Ghoomar Dancers" class="heritage-art-img" />
+              <div class="heritage-art-overlay"></div>
+            </div>
+            <div class="heritage-art-content">
+              <span class="heritage-art-tag">Folk Heritage</span>
+              <h3 class="heritage-art-title">Ghoomar &amp; Baul</h3>
+              <p class="heritage-art-sub">Rajasthani Maand, Bengali Baul and desert calls</p>
+            </div>
+          </div>
+
+          <div class="heritage-art-card" data-filter="bansuri">
+            <div class="heritage-art-img-wrap">
+              <img src="images/tradition_krishna.jpg" alt="Lord Krishna playing Bansuri Flute" class="heritage-art-img" />
+              <div class="heritage-art-overlay"></div>
+            </div>
+            <div class="heritage-art-content">
+              <span class="heritage-art-tag">Devotional &amp; Flute</span>
+              <h3 class="heritage-art-title">Bansuri &amp; Kirtan</h3>
+              <p class="heritage-art-sub">Flute melodies, group cycles and folk devotion</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Search Bar with Mic & Visualizer Trigger -->
+        <div class="song-search-container">
+          <div class="song-search-bar">
+            <span class="song-search-icon" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            </span>
+            <input
+              id="song-search-input"
+              class="song-search-input"
+              type="text"
+              placeholder="Sing/hum into mic, or type song name, lyric ('Kesariya balam'), state..."
+              autocomplete="off"
+            />
+            <select id="song-mic-lang" class="song-mic-lang" aria-label="Voice search language">
+              <option value="en-IN">EN</option>
+              <option value="hi-IN">HI</option>
+            </select>
+            <button id="song-mic-btn" class="song-mic-btn" type="button" aria-label="Search by singing or humming">
+              <svg class="mic-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" y1="19" x2="12" y2="23"></line><line x1="8" y1="23" x2="16" y2="23"></line></svg>
+              <span>Mic</span>
+            </button>
+          </div>
+
+          <!-- Live Visualizer Canvas & Audio Pitch Tracker Overlay -->
+          <div id="song-mic-panel" class="song-mic-panel" hidden>
+            <div class="song-mic-visualizer-wrap">
+              <canvas id="song-mic-canvas" class="song-mic-canvas" width="560" height="48"></canvas>
+            </div>
+            <div id="song-mic-status" class="song-mic-status" aria-live="polite"></div>
+          </div>
+        </div>
+
+        <!-- Curation View Tabs -->
+        <div class="song-nav-tabs" role="tablist" aria-label="Song views">
+          <button id="tab-folk" class="song-tab-btn active" role="tab" aria-selected="true">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg>
+            Folk &amp; Heritage First
+          </button>
+          <button id="tab-all" class="song-tab-btn" role="tab" aria-selected="false">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polygon points="10 8 16 12 10 16 10 8"></polygon></svg>
+            All Songs
+          </button>
+          <button id="tab-regions" class="song-tab-btn" role="tab" aria-selected="false">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+            Browse States
+          </button>
+        </div>
+
+        <!-- Quick Filter Pills -->
+        <div id="song-chip-row" class="song-chip-row" aria-label="Quick heritage and state filters"></div>
+
+        <p class="song-finder-note">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+          Matches titles, lyric lines, humming melody semitones, state heritage, instruments, and cultural era.
+        </p>
 
         <div id="song-results" class="song-results"></div>
       </div>
 
       <!-- ---- DETAIL VIEW ---- -->
       <div id="song-detail-view" hidden>
-        <button id="song-back-btn" class="song-back-btn" type="button">Back to results</button>
+        <button id="song-back-btn" class="song-back-btn" type="button">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+          Back to results
+        </button>
 
-        <h2 id="song-detail-title" class="song-detail-title"></h2>
-        <p id="song-detail-artist" class="song-detail-artist"></p>
+        <div class="song-detail-header">
+          <div id="song-detail-badge" class="song-detail-badge"></div>
+          <h2 id="song-detail-title" class="song-detail-title"></h2>
+          <p id="song-detail-artist" class="song-detail-artist"></p>
+        </div>
 
-        <p id="song-detail-description" class="song-detail-description"></p>
+        <div class="song-detail-section">
+          <h4 class="song-section-heading">Cultural History &amp; Significance</h4>
+          <p id="song-detail-description" class="song-detail-description"></p>
+        </div>
+
+        <div id="song-detail-lyrics-wrap" class="song-detail-section" hidden>
+          <h4 class="song-section-heading">Sung Lyric Hooks / Lines</h4>
+          <div id="song-detail-lyrics" class="song-detail-lyrics"></div>
+        </div>
 
         <div class="song-detail-grid">
           <div class="song-detail-field">
-            <span class="song-detail-label">Language</span>
-            <span id="song-detail-language" class="song-detail-value"></span>
+            <span class="song-detail-label">State</span>
+            <span id="song-detail-state" class="song-detail-value"></span>
           </div>
           <div class="song-detail-field">
             <span class="song-detail-label">Region</span>
             <span id="song-detail-region" class="song-detail-value"></span>
+          </div>
+          <div class="song-detail-field">
+            <span class="song-detail-label">Language</span>
+            <span id="song-detail-language" class="song-detail-value"></span>
           </div>
           <div class="song-detail-field">
             <span class="song-detail-label">Genre</span>
@@ -155,7 +249,7 @@
             <span id="song-detail-occasion" class="song-detail-value"></span>
           </div>
           <div class="song-detail-field">
-            <span class="song-detail-label">Instruments</span>
+            <span class="song-detail-label">Folk Instruments</span>
             <span id="song-detail-instruments" class="song-detail-value"></span>
           </div>
           <div class="song-detail-field">
@@ -169,17 +263,586 @@
         </div>
 
         <a id="song-detail-youtube" class="song-youtube-btn" href="#" target="_blank" rel="noopener noreferrer">
-          Find it on YouTube
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/></svg>
+          Listen &amp; Watch on YouTube
         </a>
       </div>
     </div>
   </div>
 
-  <script src="mapData.js"></script>
+
+
+  <!-- ============ LEARN THE FOLK SONG (Feature Two) ============ -->
+  <div id="folk-learn-modal" class="song-finder-modal" aria-hidden="true">
+    <div id="folk-learn-backdrop" class="song-finder-backdrop"></div>
+
+    <div class="song-finder-panel folk-learn-panel" role="dialog" aria-modal="true" aria-labelledby="folk-learn-title">
+      <button id="folk-learn-close" class="song-finder-close" aria-label="Close learn the folk song">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+      </button>
+
+      <!-- ---- REGION SELECT VIEW ---- -->
+      <div id="folk-region-view">
+        <div class="song-finder-header">
+          <h2 id="folk-learn-title" class="song-finder-title">Learn the Folk Song</h2>
+          <p class="song-finder-subtitle">Choose a regional tradition, work through video lessons level by level, then record yourself and get instant practice feedback.</p>
+        </div>
+        <div id="folk-region-grid" class="folk-region-grid"></div>
+      </div>
+
+      <!-- ---- LEVEL + LESSON LIST VIEW ---- -->
+      <div id="folk-level-view" hidden>
+        <button id="folk-back-to-regions" class="song-back-btn" type="button">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+          Back to traditions
+        </button>
+
+        <div class="song-detail-header">
+          <div id="folk-level-badge" class="song-detail-badge"></div>
+          <h2 id="folk-level-region-name" class="song-finder-title folk-region-title"></h2>
+          <p id="folk-level-region-tagline" class="song-finder-subtitle"></p>
+        </div>
+
+        <div id="folk-level-tabs" class="song-nav-tabs folk-level-tabs" role="tablist" aria-label="Skill level"></div>
+        <p id="folk-level-blurb" class="folk-level-blurb"></p>
+        <div id="folk-lesson-list" class="song-results folk-lesson-list"></div>
+      </div>
+
+      <!-- ---- LESSON DETAIL + TEST YOURSELF VIEW ---- -->
+      <div id="folk-lesson-view" hidden>
+        <button id="folk-back-to-lessons" class="song-back-btn" type="button">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+          Back to lessons
+        </button>
+
+        <div class="song-detail-header">
+          <div id="folk-lesson-badge" class="song-detail-badge"></div>
+          <h2 id="folk-lesson-title" class="song-detail-title"></h2>
+          <p id="folk-lesson-style" class="song-detail-artist"></p>
+        </div>
+
+        <div id="folk-video-frame" class="folk-video-frame"></div>
+
+        <div class="song-detail-section">
+          <h4 class="song-section-heading">About this lesson</h4>
+          <p id="folk-lesson-description" class="song-detail-description"></p>
+        </div>
+
+        <div class="song-detail-section">
+          <h4 class="song-section-heading">Focus on</h4>
+          <ul id="folk-lesson-focus" class="folk-focus-list"></ul>
+        </div>
+
+        <button id="folk-mark-complete" class="folk-complete-btn" type="button">Mark lesson complete</button>
+
+        <div class="song-detail-section folk-test-section">
+          <h4 class="song-section-heading">Test Yourself</h4>
+          <p id="folk-practice-line" class="folk-practice-line"></p>
+
+          <div class="folk-recorder">
+            <button id="folk-record-btn" class="song-mic-btn folk-record-btn" type="button" aria-label="Record your practice take">
+              <svg class="mic-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" y1="19" x2="12" y2="23"></line><line x1="8" y1="23" x2="16" y2="23"></line></svg>
+              <span id="folk-record-btn-label">Record</span>
+            </button>
+            <span id="folk-record-timer" class="folk-record-timer">00:00</span>
+          </div>
+
+          <div id="folk-record-panel" class="song-mic-panel" hidden>
+            <div class="song-mic-visualizer-wrap">
+              <canvas id="folk-record-canvas" class="song-mic-canvas" width="560" height="48"></canvas>
+            </div>
+            <div id="folk-record-status" class="song-mic-status" aria-live="polite"></div>
+          </div>
+
+          <div id="folk-playback-wrap" class="folk-playback-wrap" hidden>
+            <span class="folk-playback-label">Your take</span>
+            <audio id="folk-playback-audio" controls></audio>
+          </div>
+
+          <div id="folk-feedback-card" class="folk-feedback-card" hidden></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ DETECT AN ART FORM (Feature Three) ============ -->
+  <div id="art-detect-modal" class="song-finder-modal" aria-hidden="true">
+    <div id="art-detect-backdrop" class="song-finder-backdrop"></div>
+
+    <div class="song-finder-panel art-detect-panel" role="dialog" aria-modal="true" aria-labelledby="art-detect-title">
+      <button id="art-detect-close" class="song-finder-close" aria-label="Close art form detector">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+      </button>
+
+      <div class="song-finder-header">
+        <div class="song-header-badge">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M20 21v-2a4 4 0 0 0-3-3.87M4 21v-2a4 4 0 0 1 3-3.87M16 3.13a4 4 0 0 1 0 7.75M8 3.13a4 4 0 0 0 0 7.75"></path></svg>
+          AI Visual Recognition
+        </div>
+        <h2 id="art-detect-title" class="song-finder-title">Detect an Art Form</h2>
+        <p class="song-finder-subtitle">Upload a photo or use your camera. A real vision AI model looks at it and tells you which Indian art form or craft it is.</p>
+      </div>
+
+      <!-- ---- CHOOSE SOURCE ---- -->
+      <div id="art-capture-view">
+        <div id="art-drop-zone" class="art-drop-zone">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+          <p>Drag a photo here, or choose an option below</p>
+        </div>
+        <input id="art-file-input" type="file" accept="image/*" hidden />
+        <div class="art-source-buttons">
+          <button id="art-upload-btn" class="art-source-btn" type="button">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+            Upload a Photo
+          </button>
+          <button id="art-camera-btn" class="art-source-btn" type="button">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
+            Use Camera
+          </button>
+        </div>
+      </div>
+
+      <!-- ---- LIVE CAMERA ---- -->
+      <div id="art-camera-view" hidden>
+        <div class="art-camera-wrap">
+          <video id="art-camera-video" class="art-camera-video" autoplay playsinline muted></video>
+        </div>
+        <p id="art-camera-error" class="art-camera-error" hidden></p>
+        <div class="art-camera-controls">
+          <button id="art-camera-cancel" class="song-back-btn" type="button">Cancel</button>
+          <button id="art-camera-shutter" class="art-shutter-btn" type="button" aria-label="Capture photo"></button>
+          <button id="art-camera-switch" class="art-source-btn art-camera-switch-btn" type="button" aria-label="Switch camera">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="17 1 21 5 17 9"></polyline><path d="M3 11V9a4 4 0 0 1 4-4h14"></path><polyline points="7 23 3 19 7 15"></polyline><path d="M21 13v2a4 4 0 0 1-4 4H3"></path></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- ---- PREVIEW BEFORE ANALYZING ---- -->
+      <div id="art-preview-view" hidden>
+        <div class="art-preview-frame">
+          <img id="art-preview-img" alt="Selected photo to analyze" />
+        </div>
+        <div class="art-preview-controls">
+          <button id="art-retake-btn" class="song-back-btn" type="button">Choose a different photo</button>
+          <button id="art-analyze-btn" class="folk-complete-btn" type="button">Analyze this photo</button>
+        </div>
+      </div>
+
+      <!-- ---- LOADING ---- -->
+      <div id="art-loading-view" hidden>
+        <div class="art-loading-wrap">
+          <span class="art-spinner"></span>
+          <p id="art-loading-status" class="art-loading-status"></p>
+        </div>
+      </div>
+
+      <!-- ---- RESULTS ---- -->
+      <div id="art-results-view" hidden>
+        <div id="art-results-body"></div>
+        <button id="art-analyze-another-btn" class="song-back-btn art-analyze-another" type="button">Analyze another photo</button>
+      </div>
+
+      <!-- ---- ERROR ---- -->
+      <div id="art-error-view" hidden>
+        <div class="art-error-wrap">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+          <p id="art-error-message" class="art-error-message"></p>
+          <button id="art-error-retry-btn" class="folk-complete-btn" type="button">Try again</button>
+        </div>
+      </div>
+
+      <canvas id="art-capture-canvas" hidden></canvas>
+    </div>
+  </div>
+
+  <!-- ============ BECOME A CONTRIBUTOR (Feature Four) ============ -->
+  <div id="contributor-modal" class="song-finder-modal" aria-hidden="true">
+    <div id="contributor-backdrop" class="song-finder-backdrop"></div>
+
+    <div class="song-finder-panel contrib-panel" role="dialog" aria-modal="true" aria-labelledby="contrib-modal-title">
+      <button id="contributor-close" class="song-finder-close" aria-label="Close Become a Contributor">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+      </button>
+
+      <!-- Modal Header Bar -->
+      <div class="song-finder-header">
+        <h2 id="contrib-modal-title" class="song-finder-title">Become a Contributor</h2>
+        <p class="song-finder-subtitle">An authentic social hub for Indian oral heritage, folk traditions, ballads, and musical lore. Share, teach, and preserve traditions.</p>
+      </div>
+
+      <!-- Contributor User Profile Bar -->
+      <div class="contrib-profile-bar" id="contrib-profile-bar">
+        <div class="contrib-user-info">
+          <div class="contrib-user-avatar" id="contrib-profile-badge">?</div>
+          <div class="contrib-user-details">
+            <h4 class="contrib-user-name" id="contrib-profile-name">Guest Contributor</h4>
+            <span class="contrib-user-handle" id="contrib-profile-handle">Set up your ID to post</span>
+          </div>
+        </div>
+
+        <div class="contrib-bar-actions">
+          <button id="contrib-edit-profile-btn" class="song-back-btn" type="button">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+            <span>My Profile ID</span>
+          </button>
+
+          <button id="contrib-create-post-btn" class="folk-complete-btn contrib-create-btn" type="button">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+            <span>Create Heritage Post</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Profile Setup Drawer / Form (Shown when creating/editing ID) -->
+      <div id="contrib-profile-drawer" class="contrib-drawer" hidden>
+        <div class="contrib-drawer-box">
+          <h3 class="contrib-drawer-title">Set Up Your Contributor Profile ID</h3>
+          <p class="contrib-drawer-sub">Register your real contributor identity to share oral lore, ballads, and lessons with the community.</p>
+
+          <form id="contrib-profile-form" class="contrib-form">
+            <div class="contrib-form-group">
+              <label>Full Display Name</label>
+              <input id="contrib-input-name" type="text" placeholder="e.g. Rukmini Devi" required />
+            </div>
+
+            <div class="contrib-form-group">
+              <label>Username handle</label>
+              <input id="contrib-input-username" type="text" placeholder="e.g. rukmini_maand" required />
+            </div>
+
+            <div class="contrib-form-row">
+              <div class="contrib-form-group">
+                <label>Native State / Region</label>
+                <select id="contrib-input-state">
+                  <option value="Rajasthan">Rajasthan</option>
+                  <option value="West Bengal">West Bengal</option>
+                  <option value="Assam">Assam</option>
+                  <option value="Punjab">Punjab</option>
+                  <option value="Maharashtra">Maharashtra</option>
+                  <option value="Gujarat">Gujarat</option>
+                  <option value="Kerala">Kerala</option>
+                  <option value="Tamil Nadu">Tamil Nadu</option>
+                  <option value="Odisha">Odisha</option>
+                  <option value="Uttar Pradesh">Uttar Pradesh</option>
+                  <option value="Bihar">Bihar</option>
+                  <option value="Jammu & Kashmir">Jammu & Kashmir</option>
+                </select>
+              </div>
+
+              <div class="contrib-form-group">
+                <label>Heritage Specialisation / Role</label>
+                <input id="contrib-input-role" type="text" placeholder="e.g. Maand Heritage Singer, Baul Minstrel" />
+              </div>
+            </div>
+
+            <div class="contrib-form-group">
+              <label>Bio / Cultural Background</label>
+              <textarea id="contrib-input-bio" rows="2" placeholder="Tell the community about your oral heritage tradition..."></textarea>
+            </div>
+
+            <div class="contrib-drawer-buttons">
+              <button id="contrib-profile-cancel" type="button" class="song-back-btn">Cancel</button>
+              <button type="submit" class="folk-complete-btn">Save Profile ID</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- Create Post Drawer / Form -->
+      <div id="contrib-post-drawer" class="contrib-drawer" hidden>
+        <div class="contrib-drawer-box">
+          <h3 class="contrib-drawer-title">Publish Heritage Post</h3>
+          <p class="contrib-drawer-sub">Share authentic oral lore, folk lyrics, instrument recordings, or step-by-step cultural tutorials.</p>
+
+          <p id="contrib-post-error" class="contrib-error-alert" hidden></p>
+
+          <form id="contrib-post-form" class="contrib-form">
+            <div class="contrib-form-group">
+              <label>Post Title / Headline</label>
+              <input id="contrib-post-title" type="text" placeholder="e.g. Understanding the Gliding Call in Kesariya Balam" required />
+            </div>
+
+            <div class="contrib-form-row">
+              <div class="contrib-form-group">
+                <label>Heritage Category</label>
+                <select id="contrib-post-category">
+                  <option value="Oral Stories & Ballads">Oral Stories & Ballads</option>
+                  <option value="Folk Singing & Chants">Folk Singing & Chants</option>
+                  <option value="Folk Instruments">Folk Instruments</option>
+                  <option value="Folk Dance & Traditions">Folk Dance & Traditions</option>
+                </select>
+              </div>
+
+              <div class="contrib-form-group">
+                <label>State / Region</label>
+                <select id="contrib-post-state">
+                  <option value="Rajasthan">Rajasthan</option>
+                  <option value="West Bengal">West Bengal</option>
+                  <option value="Assam">Assam</option>
+                  <option value="Punjab">Punjab</option>
+                  <option value="Maharashtra">Maharashtra</option>
+                  <option value="Gujarat">Gujarat</option>
+                  <option value="Kerala">Kerala</option>
+                  <option value="Tamil Nadu">Tamil Nadu</option>
+                  <option value="Odisha">Odisha</option>
+                  <option value="Uttar Pradesh">Uttar Pradesh</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="contrib-form-group">
+              <label>Photo / Artwork Media</label>
+              <div class="contrib-file-wrap">
+                <img id="contrib-post-file-preview" src="images/tradition_dance.jpg" alt="Preview" class="contrib-preview-thumb" />
+                <button id="contrib-post-file-btn" type="button" class="art-source-btn">Upload Artwork / Photo</button>
+                <input id="contrib-post-file" type="file" accept="image/*" hidden />
+              </div>
+            </div>
+
+            <div class="contrib-form-group">
+              <label>Cultural Story, Narrative & Lyrics</label>
+              <textarea id="contrib-post-narrative" rows="4" placeholder="Describe the cultural backstory, lyrics, breath techniques, or oral lore..." required></textarea>
+            </div>
+
+            <div class="contrib-checkbox-group">
+              <label class="contrib-check-label">
+                <input id="contrib-post-teach" type="checkbox" />
+                <span>Mark as Instructional Tutorial / Teach Others</span>
+              </label>
+            </div>
+
+            <!-- MANDATORY HERITAGE PLEDGE CHECKBOX -->
+            <div class="contrib-pledge-box">
+              <label class="contrib-check-label pledge-label">
+                <input id="contrib-post-pledge" type="checkbox" required />
+                <span>I confirm that this post contains authentic Indian oral heritage, folk music, storytelling, or cultural tradition content only.</span>
+              </label>
+            </div>
+
+            <div class="contrib-drawer-buttons">
+              <button id="contrib-post-cancel" type="button" class="song-back-btn">Cancel</button>
+              <button type="submit" class="folk-complete-btn">Publish to Feed</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- Feed Filter Tabs -->
+      <div id="contrib-filter-tabs" class="song-nav-tabs contrib-tabs" role="tablist"></div>
+
+      <!-- Social Media Feed Container -->
+      <div id="contrib-feed-list" class="contrib-feed-list"></div>
+    </div>
+  </div>
+
+  <!-- ============ LOK VAANI — ORAL HERITAGE ARCHIVE (Feature Two) ============ -->
+  <div id="lok-vaani-modal" class="song-finder-modal" aria-hidden="true">
+    <div id="lok-vaani-backdrop" class="song-finder-backdrop"></div>
+
+    <div class="song-finder-panel lok-panel" role="dialog" aria-modal="true" aria-labelledby="lok-modal-title">
+      <button id="lok-vaani-close" class="song-finder-close" aria-label="Close Lok Vaani">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+      </button>
+
+      <!-- ---- LIST / SEARCH VIEW ---- -->
+      <div id="lokv-list-view">
+        <!-- Modal Header Bar -->
+        <div class="song-finder-header">
+          <div class="song-header-badge">Oral Heritage Archive</div>
+          <h2 id="lok-modal-title" class="song-finder-title">Lok Vaani (लोक वाणी)</h2>
+          <p class="song-finder-subtitle">Search and explore authentic Dohas, Folktales &amp; Stories, Khyal Folk-Theatre, Poetry &amp; Shayari, and Heritage Books across states, authors, and festivals.</p>
+        </div>
+
+        <!-- Search Bar -->
+        <div class="song-search-container" style="margin-bottom:1.2rem;">
+          <div class="song-search-bar">
+            <span class="song-search-icon" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            </span>
+            <input
+              id="lokv-search-input"
+              class="song-search-input"
+              type="text"
+              placeholder="Search by keyword, doha line, story, author ('Meera Bai', 'Vijaydan Detha'), or theme..."
+              autocomplete="off"
+            />
+          </div>
+        </div>
+
+        <!-- Filter Dropdowns Row -->
+        <div class="lokv-filter-row">
+          <div class="lokv-filter-group">
+            <label class="lokv-filter-label" for="lokv-filter-state">State / Region</label>
+            <select id="lokv-filter-state" class="lokv-filter-select">
+              <option value="all">All States</option>
+              <option value="Rajasthan">Rajasthan</option>
+              <option value="West Bengal">West Bengal</option>
+              <option value="Uttar Pradesh">Uttar Pradesh</option>
+              <option value="Bihar">Bihar</option>
+              <option value="Assam">Assam</option>
+              <option value="Punjab">Punjab</option>
+              <option value="Maharashtra">Maharashtra</option>
+              <option value="Gujarat">Gujarat</option>
+            </select>
+          </div>
+
+          <div class="lokv-filter-group">
+            <label class="lokv-filter-label" for="lokv-filter-form">Genre / Form</label>
+            <select id="lokv-filter-form" class="lokv-filter-select">
+              <option value="all">All Forms</option>
+              <option value="Doha">Doha (दौहा / साखी)</option>
+              <option value="Story">Folktale / Story (लोक कथा)</option>
+              <option value="Khyal">Khyal Theatre (ख्याल)</option>
+              <option value="Poetry">Poetry &amp; Shayari (कविता / शायरी)</option>
+              <option value="Book">Heritage Books (ग्रंथ / पुस्तक)</option>
+            </select>
+          </div>
+
+          <div class="lokv-filter-group">
+            <label class="lokv-filter-label" for="lokv-filter-festival">Festival / Occasion</label>
+            <select id="lokv-filter-festival" class="lokv-filter-select">
+              <option value="all">All Festivals</option>
+              <option value="Gangaur">Gangaur</option>
+              <option value="Teej">Teej</option>
+              <option value="Holi">Holi</option>
+              <option value="Janmashtami">Janmashtami</option>
+              <option value="Sharad Purnima">Sharad Purnima</option>
+              <option value="Navratri">Navratri</option>
+              <option value="Folk Fair">Folk Fair / Mela</option>
+            </select>
+          </div>
+
+          <div class="lokv-filter-group">
+            <label class="lokv-filter-label" for="lokv-filter-author">Author / Poet</label>
+            <select id="lokv-filter-author" class="lokv-filter-select">
+              <option value="all">All Authors</option>
+              <option value="Meera Bai">Meera Bai</option>
+              <option value="Kabir Das">Kabir Das</option>
+              <option value="Chand Bardai">Chand Bardai</option>
+              <option value="Vijaydan Detha">Vijaydan Detha</option>
+              <option value="Prithviraj Rathore">Prithviraj Rathore</option>
+              <option value="Lachhiram">Lachhiram (Khyal)</option>
+              <option value="Traditional">Traditional Folk Bards</option>
+            </select>
+          </div>
+
+          <button id="lokv-filter-reset" class="song-back-btn lokv-reset-btn" type="button">Reset Filters</button>
+        </div>
+
+        <!-- Oral Heritage Cards Container -->
+        <div id="lokv-results" class="lok-entries-grid"></div>
+      </div>
+
+      <!-- ---- DETAIL VIEW ---- -->
+      <div id="lokv-detail-view" hidden>
+        <button id="lokv-back-btn" class="song-back-btn" type="button" style="margin-bottom:1rem;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+          Back to results
+        </button>
+
+        <div class="song-detail-header">
+          <div id="lokv-detail-badge" class="song-detail-badge"></div>
+          <h2 id="lokv-detail-title" class="song-detail-title"></h2>
+          <p id="lokv-detail-author" class="song-detail-artist"></p>
+        </div>
+
+        <div class="song-detail-section">
+          <h4 class="song-section-heading">Story, Verses &amp; Cultural Significance</h4>
+          <p id="lokv-detail-description" class="song-detail-description" style="line-height:1.7; font-size:1.05rem;"></p>
+        </div>
+
+        <div class="song-detail-grid">
+          <div class="song-detail-field">
+            <span class="song-detail-label">State / Region</span>
+            <span id="lokv-detail-region" class="song-detail-value"></span>
+          </div>
+          <div class="song-detail-field">
+            <span class="song-detail-label">Form / Genre</span>
+            <span id="lokv-detail-form-val" class="song-detail-value"></span>
+          </div>
+          <div class="song-detail-field">
+            <span class="song-detail-label">Festival / Occasion</span>
+            <span id="lokv-detail-festival-val" class="song-detail-value"></span>
+          </div>
+          <div class="song-detail-field">
+            <span class="song-detail-label">Author / Origin</span>
+            <span id="lokv-detail-author-val" class="song-detail-value"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ EXPLORE HERITAGE (Feature Five) ============ -->
+  <div id="heritage-explore-modal" class="song-finder-modal" aria-hidden="true">
+    <div id="heritage-explore-backdrop" class="song-finder-backdrop"></div>
+
+    <div class="song-finder-panel heritage-panel" role="dialog" aria-modal="true" aria-labelledby="heritage-modal-title">
+      <button id="heritage-explore-close" class="song-finder-close" aria-label="Close Explore Heritage">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+      </button>
+
+      <!-- Modal Header Bar -->
+      <div class="song-finder-header">
+        <h2 id="heritage-modal-title" class="song-finder-title">Explore Indian Heritage</h2>
+        <p class="song-finder-subtitle">Discover classical and folk songs, legendary authors &amp; saints, regional folktales, nataks, traditional dance forms, and instruments.</p>
+      </div>
+
+      <!-- Tab Bar -->
+      <div class="song-nav-tabs heritage-tabs" role="tablist">
+        <button class="song-tab-btn active" data-tab="music" role="tab">Music</button>
+        <button class="song-tab-btn" data-tab="authors" role="tab">Authors</button>
+        <button class="song-tab-btn" data-tab="folktales" role="tab">Folktales</button>
+        <button class="song-tab-btn" data-tab="nataks" role="tab">Nataks</button>
+        <button class="song-tab-btn" data-tab="dances" role="tab">Dances</button>
+        <button class="song-tab-btn" data-tab="instruments" role="tab">Instruments</button>
+      </div>
+
+      <!-- Browse View -->
+      <div id="heritage-browse-view">
+        <p id="heritage-tab-intro" class="song-finder-subtitle" style="text-align:left; margin-bottom:1rem;"></p>
+        <div id="heritage-grid" class="heritage-grid"></div>
+      </div>
+
+      <!-- Detail View -->
+      <div id="heritage-detail-view" hidden>
+        <button id="heritage-back-btn" class="song-back-btn" type="button">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+          Back to browsing
+        </button>
+
+        <div class="song-detail-header">
+          <div id="heritage-detail-badge" class="song-detail-badge"></div>
+          <h2 id="heritage-detail-title" class="song-detail-title"></h2>
+          <p id="heritage-detail-subtitle" class="song-detail-artist"></p>
+        </div>
+
+        <div id="heritage-detail-image-wrap" class="art-preview-frame" style="max-height:280px; margin-bottom:1.5rem;">
+          <img id="heritage-detail-image" alt="Heritage illustration" style="max-height:280px;" />
+        </div>
+
+        <div class="song-detail-section">
+          <h4 id="heritage-detail-section-heading" class="song-section-heading">Cultural Context &amp; Significance</h4>
+          <p id="heritage-detail-description" class="song-detail-description"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="mapdata.js"></script>
   <script src="stateDistrictData.js"></script>
-  <script src="stateInfo.js"></script>
-  <script src="songData.js"></script>
-  <script src="songFinder.js"></script>
+  <script src="stateinfo.js"></script>
+  <script src="songdata.js"></script>
+  <script src="songfinder.js"></script>
+  <script src="lokvaaniData.js"></script>
+  <script src="lokvaani.js"></script>
+  <script src="heritagedata.js"></script>
+  <script src="heritage.js"></script>
+  <script src="Folklearndata.js"></script>
+  <script src="Folklearn.js"></script>
+  <script src="Artdetector.js"></script>
+  <script src="contributorData.js"></script>
+  <script src="contributor.js"></script>
   <script src="script.js"></script>
 </body>
 </html>

@@ -21,6 +21,9 @@ const backToIndiaBtn = document.getElementById("back-to-india");
 const statePanel = document.getElementById("state-panel");
 const panelStateName = document.getElementById("panel-state-name");
 const panelDistrictCount = document.getElementById("panel-district-count");
+const panelStateImage = document.getElementById("panel-state-image");
+const stateInfoPlaceholder = document.getElementById("state-info-placeholder");
+const panelStateBlurb = document.getElementById("panel-state-blurb");
 const districtSearch = document.getElementById("district-search");
 const districtList = document.getElementById("district-list");
 const closePanelBtn = document.getElementById("close-panel");
@@ -36,7 +39,7 @@ function renderIndiaMap() {
   MAP_STATES.forEach((state) => {
     const path = document.createElementNS(svgNS, "path");
     path.setAttribute("d", state.d);
-    path.setAttribute("class", "state-path" + (PILOT_STATE_IDS.has(state.id) ? " pilot" : ""));
+    path.setAttribute("class", "state-path");
     path.setAttribute("data-id", state.id);
     path.setAttribute("tabindex", "0");
     path.setAttribute("role", "button");
@@ -111,15 +114,46 @@ function selectState(state) {
   districtMapTitle.textContent = state.name;
   renderDistrictMap(state);
 
-  // side panel, name, count, search
+  // side panel, name, count, image + blurb, search
   panelStateName.textContent = state.name;
   panelDistrictCount.textContent = currentDistricts.length
     ? currentDistricts.length + " districts"
     : "District boundary data not yet available for this region";
 
+  showStateInfo(state);
+
   districtSearch.value = "";
   renderDistrictList(currentDistricts);
   statePanel.classList.add("open");
+}
+
+function showStateInfo(state) {
+  const info = (typeof STATE_INFO !== "undefined" && STATE_INFO[state.id]) || null;
+
+  // reset image state before (re)loading, so switching states doesn't
+  // briefly show the previous state's picture
+  panelStateImage.classList.remove("loaded");
+  stateInfoPlaceholder.classList.remove("hidden");
+
+  panelStateImage.onload = () => {
+    panelStateImage.classList.add("loaded");
+    stateInfoPlaceholder.classList.add("hidden");
+  };
+  panelStateImage.onerror = () => {
+    panelStateImage.classList.remove("loaded");
+    stateInfoPlaceholder.classList.remove("hidden");
+  };
+
+  if (info && info.image) {
+    panelStateImage.alt = state.name;
+    panelStateImage.src = info.image;
+  } else {
+    panelStateImage.removeAttribute("src");
+  }
+
+  panelStateBlurb.textContent = info && info.blurb
+    ? info.blurb
+    : "More about " + state.name + " is on its way \u2014 check back soon.";
 }
 
 function returnToIndiaMap() {
@@ -243,6 +277,30 @@ closePanelBtn.addEventListener("click", () => {
 
 document.querySelectorAll(".theme-card").forEach((card) => {
   card.addEventListener("click", () => {
+    if (card.dataset.feature === "feature-1" && typeof window.openSongFinder === "function") {
+      window.openSongFinder();
+      return;
+    }
+    if (card.dataset.feature === "feature-2" && typeof window.openLokVaani === "function") {
+      window.openLokVaani();
+      return;
+    }
+    if (card.dataset.feature === "feature-3" && typeof window.openContributor === "function") {
+      window.openContributor();
+      return;
+    }
+    if (card.dataset.feature === "feature-4" && typeof window.openFolkLearn === "function") {
+      window.openFolkLearn();
+      return;
+    }
+    if (card.dataset.feature === "feature-5" && typeof window.openHeritageExplorer === "function") {
+      window.openHeritageExplorer();
+      return;
+    }
+    if (card.dataset.feature === "feature-6" && typeof window.openArtDetector === "function") {
+      window.openArtDetector();
+      return;
+    }
     console.log("Feature selected:", card.dataset.feature);
   });
 });
