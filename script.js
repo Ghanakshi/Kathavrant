@@ -36,16 +36,25 @@ function renderIndiaMap() {
   MAP_STATES.forEach((state) => {
     const path = document.createElementNS(svgNS, "path");
     path.setAttribute("d", state.d);
-    path.setAttribute("class", "state-path" + (PILOT_STATE_IDS.has(state.id) ? " pilot" : ""));
+    path.setAttribute(
+      "class",
+      "state-path" + (PILOT_STATE_IDS.has(state.id) ? " pilot" : ""),
+    );
     path.setAttribute("data-id", state.id);
     path.setAttribute("tabindex", "0");
     path.setAttribute("role", "button");
     path.setAttribute("aria-label", state.name);
 
-    path.addEventListener("mouseenter", (e) => showLabel(stateLabel, indiaMapWrapper, state.name, e));
-    path.addEventListener("mousemove", (e) => positionLabel(stateLabel, indiaMapWrapper, svg, e));
+    path.addEventListener("mouseenter", (e) =>
+      showLabel(stateLabel, indiaMapWrapper, state.name, e),
+    );
+    path.addEventListener("mousemove", (e) =>
+      positionLabel(stateLabel, indiaMapWrapper, svg, e),
+    );
     path.addEventListener("mouseleave", () => hideLabel(stateLabel));
-    path.addEventListener("focus", (e) => showLabel(stateLabel, indiaMapWrapper, state.name, e));
+    path.addEventListener("focus", (e) =>
+      showLabel(stateLabel, indiaMapWrapper, state.name, e),
+    );
     path.addEventListener("blur", () => hideLabel(stateLabel));
     path.addEventListener("click", () => selectState(state));
     path.addEventListener("keydown", (e) => {
@@ -128,7 +137,9 @@ function returnToIndiaMap() {
   districtSvg.innerHTML = "";
   hideLabel(districtLabel);
 
-  document.querySelectorAll(".state-path").forEach((p) => p.classList.remove("selected"));
+  document
+    .querySelectorAll(".state-path")
+    .forEach((p) => p.classList.remove("selected"));
   statePanel.classList.remove("open");
   activeStateId = null;
 }
@@ -143,6 +154,7 @@ function renderDistrictMap(state) {
 
   if (!stateData || !stateData.districts || !stateData.districts.length) {
     districtSvg.setAttribute("viewBox", "0 0 560 560");
+
     const text = document.createElementNS(svgNS, "text");
     text.setAttribute("x", "280");
     text.setAttribute("y", "280");
@@ -150,6 +162,7 @@ function renderDistrictMap(state) {
     text.setAttribute("fill", "#F4EDE1");
     text.setAttribute("font-size", "16");
     text.textContent = "District boundaries not yet available";
+
     districtSvg.appendChild(text);
     return;
   }
@@ -158,6 +171,7 @@ function renderDistrictMap(state) {
 
   stateData.districts.forEach((district) => {
     const path = document.createElementNS(svgNS, "path");
+
     path.setAttribute("d", district.d);
     path.setAttribute("class", "district-path");
     path.setAttribute("data-name", district.name);
@@ -165,16 +179,33 @@ function renderDistrictMap(state) {
     path.setAttribute("role", "button");
     path.setAttribute("aria-label", district.name);
 
-    path.addEventListener("mouseenter", (e) => showLabel(districtLabel, districtMapWrapper, district.name, e));
-    path.addEventListener("mousemove", (e) => positionLabel(districtLabel, districtMapWrapper, districtSvg, e));
+    path.addEventListener("mouseenter", (e) =>
+      showLabel(districtLabel, districtMapWrapper, district.name, e),
+    );
+
+    path.addEventListener("mousemove", (e) =>
+      positionLabel(districtLabel, districtMapWrapper, districtSvg, e),
+    );
+
     path.addEventListener("mouseleave", () => hideLabel(districtLabel));
-    path.addEventListener("focus", (e) => showLabel(districtLabel, districtMapWrapper, district.name, e));
+
+    path.addEventListener("focus", (e) =>
+      showLabel(districtLabel, districtMapWrapper, district.name, e),
+    );
+
     path.addEventListener("blur", () => hideLabel(districtLabel));
-    path.addEventListener("click", () => onDistrictSelect(district.name));
+
+    // CLICK DISTRICT → SAME TAB → district.html
+    path.addEventListener("click", () => {
+      window.location.href = `district.html?district=${encodeURIComponent(district.name)}`;
+    });
+
+    // KEYBOARD → SAME TAB → district.html
     path.addEventListener("keydown", (e) => {
       if (e.key === "Enter" || e.key === " ") {
         e.preventDefault();
-        onDistrictSelect(district.name);
+
+        window.location.href = `district.html?district=${encodeURIComponent(district.name)}`;
       }
     });
 
@@ -199,45 +230,21 @@ function renderDistrictList(items) {
     const li = document.createElement("li");
     li.textContent = district;
     li.tabIndex = 0;
-    li.addEventListener("click", () => onDistrictSelect(district));
+
+    li.addEventListener("click", () => {
+      window.location.href = `district.html?district=${encodeURIComponent(district)}`;
+    });
+
     li.addEventListener("keydown", (e) => {
       if (e.key === "Enter" || e.key === " ") {
         e.preventDefault();
-        onDistrictSelect(district);
+        window.location.href = `district.html?district=${encodeURIComponent(district)}`;
       }
     });
+
     districtList.appendChild(li);
   });
 }
-
-function onDistrictSelect(districtName) {
-  // Full district detail view is not built yet, this is the framework stage.
-  // For now, highlight the selected district on the map.
-  document.querySelectorAll(".district-path").forEach((p) => {
-    const isMatch = p.getAttribute("data-name") === districtName;
-    p.classList.toggle("highlighted", isMatch);
-    p.classList.toggle("dimmed", !isMatch);
-  });
-  console.log("District selected:", districtName, "in", activeStateId);
-}
-
-districtSearch.addEventListener("input", () => {
-  const query = districtSearch.value.trim().toLowerCase();
-  const filtered = currentDistricts.filter((d) => d.toLowerCase().includes(query));
-  renderDistrictList(filtered);
-
-  // reflect the search on the map too, dim non matching districts
-  document.querySelectorAll(".district-path").forEach((p) => {
-    const name = (p.getAttribute("data-name") || "").toLowerCase();
-    const matches = query === "" || name.includes(query);
-    p.classList.toggle("dimmed", !matches);
-    p.classList.remove("highlighted");
-  });
-});
-
-closePanelBtn.addEventListener("click", () => {
-  statePanel.classList.remove("open");
-});
 
 // ============ SUB THEME CARDS (placeholders) ============
 

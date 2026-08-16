@@ -1,0 +1,918 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>District</title>
+
+
+  <!-- =====================================================
+       GOOGLE FONTS
+       ===================================================== -->
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+
+  <link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+  >
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Yatra+One&family=Mukta:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  >
+
+
+  <!-- =====================================================
+       CSS
+       ===================================================== -->
+
+  <link
+    rel="stylesheet"
+    href="district.css"
+  >
+
+</head>
+
+
+<body>
+
+
+  <!-- =====================================================
+       DISTRICT HERO
+       ===================================================== -->
+
+  <section class="district-hero">
+
+    <img
+      id="district-image"
+      class="district-image"
+      src="assets/states/rajasthan.jpeg"
+      alt="District"
+    >
+
+    <div class="hero-overlay"></div>
+
+
+    <div class="district-hero-content">
+
+      <h1
+        id="district-title"
+        class="district-title"
+      >
+        District
+      </h1>
+
+
+      <p
+        id="district-description"
+        class="district-description"
+      >
+        Explore the oral traditions, folk songs, stories and
+        historical narratives preserved by generations of
+        people from this region.
+      </p>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- =====================================================
+       CULTURAL CONTENT
+       ===================================================== -->
+
+  <main class="heritage-sections">
+
+
+    <!-- =================================================
+         STORIES
+         ================================================= -->
+
+    <section class="heritage-section">
+
+      <h2>Stories</h2>
+
+
+      <div
+        id="stories-list"
+        class="content-card"
+      >
+
+        <h3>Regional Stories</h3>
+
+        <p>
+          Oral stories and regional narratives passed down
+          through generations will appear here.
+        </p>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- =================================================
+         HISTORICAL NARRATIVES
+         ================================================= -->
+
+    <section class="heritage-section">
+
+      <h2>Historical Narratives</h2>
+
+
+      <div
+        id="narratives-list"
+        class="content-card"
+      >
+
+        <h3>History of the Region</h3>
+
+        <p>
+          Historical accounts, memories and narratives connected
+          to this district will appear here.
+        </p>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- =================================================
+         FOLK SONGS
+         ================================================= -->
+
+    <section class="heritage-section folk-songs-section">
+
+      <h2>Folk Songs</h2>
+
+
+      <div
+        id="folk-songs-list"
+        class="content-card folk-songs-list"
+      >
+
+        <div class="folk-song-placeholder">
+
+          Folk songs of this region will appear here.
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+  </main>
+
+
+
+  <!-- =====================================================
+       STORY / NARRATIVE READER
+       ===================================================== -->
+
+  <section
+    id="story-reader"
+    class="story-reader"
+  >
+
+    <button
+      id="close-story"
+      class="close-story"
+    >
+      ✕ Close
+    </button>
+
+
+    <div class="story-content">
+
+  <h1 id="story-title"></h1>
+
+  <img
+    id="story-image"
+    class="story-reader-image"
+    src=""
+    alt=""
+  >
+
+  <div id="story-text"></div>
+
+</div>
+
+  </section>
+
+
+
+  <!-- =====================================================
+       DISTRICT DATA
+       ===================================================== -->
+
+  <script src="districtData.js"></script>
+
+
+
+  <!-- =====================================================
+       PAGE SCRIPT
+       ===================================================== -->
+
+  <script>
+
+
+    /* =====================================================
+       STATE IMAGES
+
+       One image is used for all districts belonging
+       to the same state.
+       ===================================================== */
+
+    const STATE_IMAGES = {
+
+      rajasthan:
+        "assets/states/rajasthan.jpeg",
+
+      kerala:
+        "assets/states/kerala.jpeg",
+
+      westbengal:
+        "assets/states/west-bengal.jpeg"
+
+    };
+
+
+
+    /* =====================================================
+       GET DISTRICT FROM URL
+       ===================================================== */
+
+    const params =
+      new URLSearchParams(
+        window.location.search
+      );
+
+
+    const districtName =
+      params.get("district");
+
+
+
+    /* =====================================================
+       LOAD DISTRICT
+       ===================================================== */
+
+    if (districtName) {
+
+      const decodedDistrict =
+        decodeURIComponent(
+          districtName
+        );
+
+
+      const districtId =
+        decodedDistrict
+          .toLowerCase()
+          .trim();
+
+
+      document.title =
+        decodedDistrict;
+
+
+
+      /* =================================================
+         DISTRICT TITLE
+         ================================================= */
+
+      document
+        .getElementById("district-title")
+        .textContent =
+        decodedDistrict;
+
+
+
+      /* =================================================
+         GET DATA
+         ================================================= */
+
+      const data =
+        DISTRICT_DATA[districtId];
+
+
+
+      if (data) {
+
+
+        /* =================================================
+           DISTRICT DESCRIPTION
+           ================================================= */
+
+        document
+          .getElementById(
+            "district-description"
+          )
+          .textContent =
+          data.description;
+
+
+
+        /* =================================================
+           DISTRICT IMAGE
+
+           Image is selected according to the state.
+
+           Example:
+
+           Jaipur      → Rajasthan image
+           Jodhpur     → Rajasthan image
+           Jaisalmer   → Rajasthan image
+
+           Kozhikode  → Kerala image
+
+           Darjeeling  → West Bengal image
+           ================================================= */
+
+        const districtImage =
+          document.getElementById(
+            "district-image"
+          );
+
+
+        const stateName =
+          data.state
+            ? data.state
+                .toLowerCase()
+                .trim()
+                .replace(/[\s-]+/g, "")
+            : "";
+
+
+        districtImage.src =
+          STATE_IMAGES[stateName] ||
+          "assets/states/rajasthan.jpeg";
+
+
+        districtImage.alt =
+          decodedDistrict;
+
+
+
+        /* =================================================
+           STORIES
+           ================================================= */
+
+        const storiesSection =
+          document.getElementById(
+            "stories-list"
+          );
+
+
+        if (
+          data.stories &&
+          data.stories.length > 0
+        ) {
+
+          storiesSection.innerHTML =
+
+            data.stories
+
+              .map(
+                (story, index) => `
+
+                  <div
+                    class="content-item story-item"
+                    data-type="story"
+                    data-index="${index}"
+                  >
+
+                    <h3>
+                      ${story.title}
+                    </h3>
+
+
+                    <p class="content-preview">
+
+                      ${
+                        story.content
+                          ? story.content.substring(0, 180) + "..."
+                          : "Content for this story is not available yet."
+                      }
+
+                    </p>
+
+
+                    <span class="read-more">
+                      Read More →
+                    </span>
+
+                  </div>
+
+                `
+              )
+
+              .join("");
+
+
+          /* =============================================
+             STORY CLICK
+             ============================================= */
+
+          document
+            .querySelectorAll(
+              "#stories-list .story-item"
+            )
+            .forEach(item => {
+
+              item.addEventListener(
+                "click",
+                () => {
+
+                  const index =
+                    item.getAttribute(
+                      "data-index"
+                    );
+
+
+                  const story =
+                    data.stories[index];
+
+
+                  openReader(
+                    story.title,
+                    story.content ||
+                    "Content for this story is not available yet."
+                  );
+
+                }
+              );
+
+            });
+
+        }
+
+        else {
+
+          storiesSection.innerHTML = `
+
+            <div class="folk-song-placeholder">
+
+              No regional stories available yet.
+
+            </div>
+
+          `;
+
+        }
+
+
+
+        /* =================================================
+           HISTORICAL NARRATIVES
+           ================================================= */
+
+        const narrativesSection =
+          document.getElementById(
+            "narratives-list"
+          );
+
+
+        if (
+          data.historicalNarratives &&
+          data.historicalNarratives.length > 0
+        ) {
+
+          narrativesSection.innerHTML =
+
+            data.historicalNarratives
+
+              .map(
+                (item, index) => `
+
+                  <div
+                    class="content-item narrative-item"
+                    data-type="narrative"
+                    data-index="${index}"
+                  >
+
+                    <h3>
+                      ${item.title}
+                    </h3>
+
+
+                    <p class="content-preview">
+
+                      ${
+                        item.content
+                          ? item.content.substring(0, 180) + "..."
+                          : "Content for this historical narrative is not available yet."
+                      }
+
+                    </p>
+
+
+                    <span class="read-more">
+                      Read More →
+                    </span>
+
+                  </div>
+
+                `
+              )
+
+              .join("");
+
+
+          /* =============================================
+             NARRATIVE CLICK
+             ============================================= */
+
+          document
+            .querySelectorAll(
+              "#narratives-list .narrative-item"
+            )
+            .forEach(item => {
+
+              item.addEventListener(
+                "click",
+                () => {
+
+                  const index =
+                    item.getAttribute(
+                      "data-index"
+                    );
+
+
+                  const narrative =
+                    data.historicalNarratives[index];
+
+
+                  openReader(
+                    narrative.title,
+                    narrative.content ||
+                    "Content for this historical narrative is not available yet.",
+                    narrative.image
+                  );
+
+                }
+              );
+
+            });
+
+        }
+
+        else {
+
+          narrativesSection.innerHTML = `
+
+            <div class="folk-song-placeholder">
+
+              No historical narratives available yet.
+
+            </div>
+
+          `;
+
+        }
+
+
+
+        /* =================================================
+           FOLK SONGS
+           ================================================= */
+
+        const folkSongsSection =
+          document.getElementById(
+            "folk-songs-list"
+          );
+
+
+        if (
+          data.folkSongs &&
+          data.folkSongs.length > 0
+        ) {
+
+
+          folkSongsSection.innerHTML =
+
+            data.folkSongs
+
+              .map(song => {
+
+                /* =========================================
+                   EXTRACT YOUTUBE VIDEO ID
+                   ========================================= */
+
+                let videoId = "";
+
+
+                try {
+
+                  const url =
+                    new URL(
+                      song.youtube
+                    );
+
+
+                  /* youtube.com/watch?v= */
+
+                  if (
+                    url.hostname.includes(
+                      "youtube.com"
+                    )
+                  ) {
+
+                    videoId =
+                      url.searchParams.get(
+                        "v"
+                      );
+
+                  }
+
+
+                  /* youtu.be/VIDEO_ID */
+
+                  else if (
+                    url.hostname.includes(
+                      "youtu.be"
+                    )
+                  ) {
+
+                    videoId =
+                      url.pathname.substring(
+                        1
+                      );
+
+                  }
+
+                }
+
+                catch (error) {
+
+                  console.log(
+                    "Invalid YouTube URL:",
+                    song.youtube
+                  );
+
+                }
+
+
+
+                /* =========================================
+                   YOUTUBE CARD
+                   ========================================= */
+
+                return `
+
+                  <a
+                    href="${song.youtube}"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="folk-song-item"
+                  >
+
+
+                    <!-- THUMBNAIL -->
+
+                    <div class="folk-song-thumbnail">
+
+                      ${
+                        videoId
+
+                        ? `
+
+                          <img
+                            src="https://img.youtube.com/vi/${videoId}/hqdefault.jpg"
+                            alt="${song.title}"
+                            loading="lazy"
+                          >
+
+                        `
+
+                        : `
+
+                          <div
+                            class="thumbnail-placeholder"
+                          >
+                            🎵
+                          </div>
+
+                        `
+                      }
+
+
+                      <!-- PLAY BUTTON -->
+
+                      <span class="folk-song-play">
+                        ▶
+                      </span>
+
+
+                      <!-- OPTIONAL DURATION -->
+
+                      ${
+                        song.duration
+
+                        ? `
+
+                          <span class="folk-duration">
+                            ${song.duration}
+                          </span>
+
+                        `
+
+                        : ""
+                      }
+
+                    </div>
+
+
+
+                    <!-- SONG INFORMATION -->
+
+                    <div class="folk-song-info">
+
+                      <h3>
+                        ${song.title}
+                      </h3>
+
+
+                      <p class="folk-song-source">
+                        ${song.source || "YouTube"}
+                      </p>
+
+
+                      ${
+                        song.date
+
+                        ? `
+
+                          <p class="folk-song-date">
+                            ${song.date}
+                          </p>
+
+                        `
+
+                        : ""
+                      }
+
+
+                      <span class="watch-song">
+                        Watch on YouTube ↗
+                      </span>
+
+                    </div>
+
+
+                  </a>
+
+                `;
+
+              })
+
+              .join("");
+
+        }
+
+        else {
+
+          folkSongsSection.innerHTML = `
+
+            <div class="folk-song-placeholder">
+
+              Folk songs of this region will
+              appear here.
+
+            </div>
+
+          `;
+
+        }
+
+      }
+
+      else {
+
+        /* =================================================
+           DISTRICT NOT FOUND
+           ================================================= */
+
+        document
+          .getElementById(
+            "district-title"
+          )
+          .textContent =
+          "District Not Found";
+
+
+        document
+          .getElementById(
+            "district-description"
+          )
+          .textContent =
+          "The requested district could not be found in the cultural archive.";
+
+      }
+
+    }
+
+
+
+    /* =====================================================
+       OPEN STORY / NARRATIVE READER
+       ===================================================== */
+
+    function openReader(
+  title,
+  content,
+  image
+) {
+
+  document
+    .getElementById("story-title")
+    .textContent =
+    title;
+
+
+  document
+    .getElementById("story-text")
+    .textContent =
+    content;
+
+
+  const storyImage =
+    document.getElementById(
+      "story-image"
+    );
+
+
+  if (image) {
+
+    storyImage.src = image;
+    storyImage.alt = title;
+    storyImage.style.display = "block";
+
+  }
+
+  else {
+
+    storyImage.src = "";
+    storyImage.alt = "";
+    storyImage.style.display = "none";
+
+  }
+
+
+  const reader =
+    document.getElementById(
+      "story-reader"
+    );
+
+
+  reader.classList.add(
+    "open"
+  );
+
+
+  reader.scrollTop = 0;
+
+}
+
+
+    /* =====================================================
+       CLOSE STORY / NARRATIVE
+       ===================================================== */
+
+    document
+      .getElementById(
+        "close-story"
+      )
+      .addEventListener(
+        "click",
+        () => {
+
+          document
+            .getElementById(
+              "story-reader"
+            )
+            .classList.remove(
+              "open"
+            );
+
+        }
+      );
+
+  </script>
+
+
+</body>
+
+</html>
